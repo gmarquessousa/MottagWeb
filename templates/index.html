@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="content-wrap">
+    <div class="left-panel">
+      <div class="search-box">
+        <input id="search-input" type="text" placeholder="Digite o endereço do pátio..." />
+      </div>
+
+      <div class="control-card">
+        <button id="btn-add" class="btn primary">
+          <span class="icon">+</span>
+          Adicionar marcação
+        </button>
+        <button id="btn-remove" class="btn">
+          <span class="icon">–</span>
+          Remover marcação
+        </button>
+        <button id="btn-antenna" class="btn">
+          <span class="icon">⛭</span>
+          Adicionar antena
+        </button>
+        <button id="btn-download" class="btn success">
+          Baixar imagem
+        </button>
+        <div id="measurements" class="measurements">
+          <div>Área total: <strong id="area">0 m²</strong></div>
+          <div>Distância total: <strong id="perimeter">0 m</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-card">
+      <div id="map"></div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    window.GOOGLE_MAPS_API_KEY = "{{ google_maps_api_key }}";
+  </script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places,geometry&callback=initMap"></script>
+{% endblock %}
